@@ -1,0 +1,25 @@
+<mat-card class="new">
+  <mat-card-header>
+    <mat-card-title>{{ department }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-list>
+    @for (entry of events; track entry) {
+    <mat-card class="card">
+      <mat-card-header>
+        @if (department == "Fire Department"){
+        <mat-icon matListItemIcon>local_fire_department</mat-icon>
+        } @else {
+        <mat-icon matListItemIcon>local_police</mat-icon>
+        }
+        <div matListItemLine>  {{ entry.timestamp | date }}</div>
+      </mat-card-header>
+      <mat-card-content>
+        <div matListItemTitle>{{ entry.description }}</div>
+        <div matListItemTitle>    Link to event: <a href="{{ entry.videoPath }}" target="_blank">Link</a></div>
+      </mat-card-content>
+      <mat-card-subtitle> </mat-card-subtitle>
+    </mat-card>
+    }
+  </mat-list>
+</mat-card>

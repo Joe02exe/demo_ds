@@ -1,0 +1,12 @@
+<mat-card class="new">
+    <mat-card-header>
+      <mat-card-title>{{ department }}</mat-card-title>
+    </mat-card-header>
+  
+    @for (image of images; track image) {
+      <mat-card class="card">
+        <img [src]=image>
+      </mat-card>
+      }
+  </mat-card>
+  

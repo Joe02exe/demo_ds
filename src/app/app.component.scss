@@ -1,0 +1,23 @@
+.image-container {
+  display: flex;
+}
+
+.image-container {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+ }
+
+.text {
+  color: white;
+  font-size: 60px;
+  border: 3px solid white; /* Add a border around the text */
+  position: absolute;
+  width: 50%;
+  text-align: center; /* Center the text */
+}
+
+.clusters {
+    display: flex;
+    justify-content:space-around;
+}
