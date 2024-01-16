@@ -1,27 +1,31 @@
-# FrontendDs
+# Angular x FastApi Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+This project is just a demo project and does not contain clean code! It is just here for demo purposes.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Enter the backend folder and install the dependencies for the backend from the requirements.txt file:
 
-## Code scaffolding
+```bash
+pip install -r requirements.txt
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+For the frontend, install the packages with npm:
 
-## Build
+```bash
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Start the app in debug mode
 
-## Running unit tests
+Then you can start the backend with:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+uvicorn backend:app
+```
 
-## Running end-to-end tests
+and to start the frontend, enter the `frontend_ds` folder and type:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng serve
+```
