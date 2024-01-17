@@ -10,6 +10,8 @@ app = FastAPI()
 
 origins = ["*"]
 
+host= 'ec2-54-91-154-144.compute-1.amazonaws.com'
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -20,7 +22,7 @@ app.add_middleware(
 
 @app.get("/fire")
 def read_root():
-    redis_client = redis.StrictRedis(host='ec2-54-173-87-48.compute-1.amazonaws.com',
+    redis_client = redis.StrictRedis(host=host,
                                      port=6379, password='1SQRr7hyIb7peXvdcT4pSV3iu7lykHVd2qmMm+aOUBvC/Xt3vuLCzNg2QkSztjdY')
     
     data = convert_and_sort(redis_client.hgetall("firedepartment_reports"))
@@ -42,7 +44,7 @@ def read_root():
 
 @app.get("/police")
 def read_police():
-    redis_client = redis.StrictRedis(host='ec2-54-173-87-48.compute-1.amazonaws.com',
+    redis_client = redis.StrictRedis(host=host,
                                      port=6379, password='1SQRr7hyIb7peXvdcT4pSV3iu7lykHVd2qmMm+aOUBvC/Xt3vuLCzNg2QkSztjdY')
     data = convert_and_sort(redis_client.hgetall("police_reports"))
 
@@ -62,9 +64,23 @@ def read_police():
 
 @app.get("/shame")
 def read_shame():
-    redis_client = redis.StrictRedis(host='ec2-54-173-87-48.compute-1.amazonaws.com',
+    redis_client = redis.StrictRedis(host=host,
                                      port=6379, password='1SQRr7hyIb7peXvdcT4pSV3iu7lykHVd2qmMm+aOUBvC/Xt3vuLCzNg2QkSztjdY')
-    return convert_and_sort(redis_client.hgetall("shame_records"))[:3]
+    data =  convert_and_sort(redis_client.hgetall("smokingPerson"))
+
+    # Convert data to the desired format
+    result_list = [
+        {
+            "eventId": value["eventId"],
+            "eventType": value["eventType"],
+            "timestamp": value["timestamp"],
+            "description": value["description"],
+            "videoPath": value["videoPath"]
+        }
+        for value in data.values()
+    ]
+
+    return result_list
 
 
 def convert_and_sort(data):

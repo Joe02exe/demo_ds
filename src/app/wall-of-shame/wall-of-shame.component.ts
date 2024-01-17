@@ -5,6 +5,8 @@ import {DatePipe} from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card'; 
 import { RedisService } from '../redis.service';
+import { Event } from '../listcluster/listcluster.component';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 export interface Section {
   name: string;
@@ -18,18 +20,23 @@ export interface Section {
   templateUrl: './wall-of-shame.component.html',
   styleUrl: './wall-of-shame.component.scss'
 })
-export class WallOfShameComponent implements OnInit{
+export class WallOfShameComponent implements OnInit {
+  images: Event[] = [];
+  displayURL: SafeResourceUrl[] = [];
 
-  images : Blob[] = []
-  
-  constructor (private redisService: RedisService) {
+  constructor(private redisService: RedisService, private sanitizer: DomSanitizer) {
   }
-  
+
   ngOnInit(): void {
     this.redisService.getWallOfShame().subscribe((data) => {
-      this.images = data
-    });  }
+      this.images = data;
 
+      // Populate displayURL after getting data
+      this.images.forEach((value) => {
+        this.displayURL.push(this.sanitizer.bypassSecurityTrustResourceUrl(value.videoPath));
+      });
+    });
+  }
   department: string = "Wall Of Shame"
 
 }
