@@ -30,11 +30,11 @@ export class RedisService {
     );;
   }
 
-  getWallOfShame(): Observable<Blob[]> {
+  getWallOfShame(): Observable<Event[]> {
     const url = `${this.baseUrl}/shame`;
-    return this.http.get<Blob[]>(url).pipe(
+    return this.http.get<Event[]>(url).pipe(
       tap(_ => console.log('fetched shame')),
-      catchError(this.handleError<Blob[]>('blob error', []))
+      catchError(this.handleError<Event[]>('blob error', []))
     );;
   }
 

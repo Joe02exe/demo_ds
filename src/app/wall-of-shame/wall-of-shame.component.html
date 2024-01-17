@@ -3,9 +3,12 @@
       <mat-card-title>{{ department }}</mat-card-title>
     </mat-card-header>
   
-    @for (image of images; track image) {
+    @for (image of displayURL; track image) {
       <mat-card class="card">
-        <img [src]=image>
+        <div id="visor-video">
+          <iframe width="300" height="200" [src]="image">
+          </iframe>
+        </div>
       </mat-card>
       }
   </mat-card>
