@@ -29,3 +29,7 @@ and to start the frontend, enter the `frontend_ds` folder and type:
 ```bash
 ng serve
 ```
+
+## Demo
+
+Then finally, when all the requirements are met and the aws setup is complete, you can add videos to the S3 bucket and then the State-machine is triggered. The demo should look something like this: ![video](./media/example_homepage.png)

@@ -6,10 +6,9 @@
     @for (image of displayURL; track image) {
       <mat-card class="card">
         <div id="visor-video">
-          <iframe width="300" height="200" [src]="image">
-          </iframe>
+          <iframe class="video" [src]="image" allowfullscreen></iframe>
         </div>
       </mat-card>
-      }
+    }
   </mat-card>
   

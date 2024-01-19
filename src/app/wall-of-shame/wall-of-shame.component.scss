@@ -1,17 +1,27 @@
 .new {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.7
-  ); /* White background with 100% opacity */
+  background-color: rgba(255, 255, 255, 0.7);
+  /* White background with 100% opacity */
   margin: 20px;
   padding: 20px;
 }
 
 .card {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the content vertically */
   background-color: rgb(186, 155, 124); /* Specify the color without opacity */
   width: 400px;
-  height: 100px;
+  height: 250px; /* Adjusted height for better video display */
   margin: 20px;
+}
+
+.video {
+  width: 100%; /* Make the video take up the full width of the container */
+  height: 100%; /* Make the video take up the full height of the container */
+  border: none; /* Remove default iframe border */
+}
+
+#visor-video {
+  width: 90%;
+  height: 90%;
 }
