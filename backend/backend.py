@@ -10,7 +10,7 @@ app = FastAPI()
 
 origins = ["*"]
 
-host= 'ec2-3-80-119-167.compute-1.amazonaws.com'
+host= 'ec2-54-226-20-8.compute-1.amazonaws.com'
 
 app.add_middleware(
     CORSMiddleware,
