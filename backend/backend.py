@@ -1,9 +1,7 @@
-from typing import Union
 import redis
-from contextlib import asynccontextmanager
 import json
 from fastapi.middleware.cors import CORSMiddleware
-
+from datetime import datetime, timedelta
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -84,12 +82,13 @@ def read_shame():
 
 
 def convert_and_sort(data):
-    formatted_data = {key.decode(
-        'utf-8'): json.loads(value.decode('utf-8')) for key, value in data.items()}
+    formatted_data = {key.decode('utf-8'): json.loads(value.decode('utf-8')) for key, value in data.items()}
 
-    # Sort the data by timestamp and take first 10 results
-    sorted_data = sorted(formatted_data.items(),
-                         key=lambda x: x[1]['timestamp'], reverse=True)[:10]
+    current_time = datetime.now()
+    filtered_data = {key: value for key, value in formatted_data.items() if current_time - datetime.strptime(value['timestamp'], '%Y-%m-%d %H:%M:%S.%f') < timedelta(hours=12)}
+
+    sorted_data = sorted(filtered_data.items(), key=lambda x: datetime.strptime(x[1]['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), reverse=True)[:10]
 
     result_dict = {key: value for key, value in sorted_data}
     return result_dict
+
