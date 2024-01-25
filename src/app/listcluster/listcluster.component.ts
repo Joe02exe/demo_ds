@@ -38,14 +38,12 @@ export class ListclusterComponent implements OnInit{
 
   ngOnInit() {
     if (this.department == "Fire Department"){
-      this.redisService.getPoliceReports().subscribe((data) => {
-        this.events = data
-        console.log(this.events)
-      });
-    } else {
       this.redisService.getFireReports().subscribe((data) => {
         this.events = data
-        console.log(this.events)
+      });
+    } else {
+      this.redisService.getPoliceReports().subscribe((data) => {
+        this.events = data
       });
     }
   }

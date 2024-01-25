@@ -12,11 +12,15 @@
         } @else {
         <mat-icon matListItemIcon>local_police</mat-icon>
         }
-        <div matListItemLine>  {{ entry.timestamp | date }}</div>
+        <div matListItemLine>
+          {{ entry.timestamp | date : "MM/dd/yyyy HH:mm:ss"  }}
+        </div>
       </mat-card-header>
       <mat-card-content>
         <div matListItemTitle>{{ entry.description }}</div>
-        <div matListItemTitle>    Link to event: <a href="{{ entry.videoPath }}" target="_blank">Link</a></div>
+        <div matListItemTitle>
+          Link to event: <a href="{{ entry.videoPath }}">Link</a>
+        </div>
       </mat-card-content>
       <mat-card-subtitle> </mat-card-subtitle>
     </mat-card>
